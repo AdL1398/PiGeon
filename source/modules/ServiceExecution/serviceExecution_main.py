@@ -69,11 +69,11 @@ class Service_Execution_Main(object):
     def run(self):
         try:
             self.face.setCommandSigningInfo(self.keyChain, self.keyChain.getDefaultCertificateName())
-            self.face.registerPrefix(self.configPrefix, self.onInterest_pushService, self.onRegisterFailed)
+            self.face.registerPrefix(self.configPrefix, self.onInterest_deployService, self.onRegisterFailed)
             print "Registered prefix : " + self.configPrefix.toUri()
 
             self.face.setCommandSigningInfo(self.keyChain, self.keyChain.getDefaultCertificateName())
-            self.face.registerPrefix(self.prefix_pullService, self.onInterest_pullService, self.onRegisterFailed)
+            self.face.registerPrefix(self.prefix_pullService, self.onInterest_deployService, self.onRegisterFailed)
             print "Registered prefix : " + self.prefix_pullService.toUri()
 
             while not self.isDone:
@@ -83,7 +83,7 @@ class Service_Execution_Main(object):
         except RuntimeError as e:
             print "ERROR: %s" %  e
 
-    def onInterest_pushService(self, prefix, interest, face, interestFilterId, filter):
+    def onInterest_deployService(self, prefix, interest, face, interestFilterId, filter):
         interestName = interest.getName()
         ### Delete image_file in SEG_Repe. This is just for migration cost experiment.
         delete_service_command = 'rm ' + self.repo_path + '*'
@@ -92,10 +92,83 @@ class Service_Execution_Main(object):
         print "Interest Name: %s" %interestName
         interest_name_components = interestName.toUri().split("/")
         if "service_deployment_push" in interest_name_components:
+            print 'PUSH model'
             image_fileName = interest_name_components[interest_name_components.index("service_deployment_push") + 2]
-            print 'Deploy service: %s' %image_fileName
-            print 'Start service deployment'
+        elif "pull_Service" in interest_name_components:
+            print 'PULL model'
+            image_fileName = interest_name_components[interest_name_components.index("pull_Service")+1]
+        else:
+            print "Interest name mismatch"
+            image_fileName = 'unknown'
 
+        print 'Deploy service: %s' %image_fileName
+        print 'Start service deployment'
+
+        if dockerctl.has_ServiceInfo(image_fileName) == True:
+            print 'Has description for service deployment'
+            ExecutionType = dockerctl.get_ExecutionType(image_fileName)
+            if ExecutionType == 'singleWebContainer':
+                print 'Deployment uses dockerctl'
+                deployment_status = dockerctl.deployContainer(image_fileName, self.num_deployedContainer)
+                if  deployment_status == 'pull_image':
+                    print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                    prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                    print 'Sending Interest message: %s' % prefix_pullImage
+                    self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                    filename = image_fileName + '.txt'
+                    self.StartTimeStamp_MigrationTime(filename)
+                elif deployment_status == 'done':
+                    print 'Service:%s is successfully deployed' %image_fileName
+                    self.num_deployedContainer += 1
+                elif deployment_status == 'error':
+                    print 'Error in deployment process'
+                else:
+                    print 'Code bug'
+
+            elif ExecutionType == 'DockerCompose':
+                print 'Deployment uses docker compose'
+                if dockerctl.has_imagefile(image_fileName) == True:
+                    print 'Load image and run service'
+                    dockerctl.run_DockerCompose_source(image_fileName)
+                else:
+                    print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                    prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                    print 'Sending Interest message: %s' % prefix_pullImage
+                    self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                    timestamp_file = image_fileName + '.txt'
+                    self.StartTimeStamp_MigrationTime(timestamp_file)
+
+            elif ExecutionType == 'kebapp':
+                print 'Service is kebapp'
+                deployment_status = dockerctl.deployKEBAPP(image_fileName)
+                if  deployment_status == 'pull_image':
+                    print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                    prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                    print 'Sending Interest message: %s' % prefix_pullImage
+                    self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                    filename = image_fileName + '.txt'
+                    self.StartTimeStamp_MigrationTime(filename)
+                elif deployment_status == 'done':
+                    print 'Service:%s is successfully deployed' %image_fileName
+                elif deployment_status == 'error':
+                    print 'Error in deployment process'
+                else:
+                    print 'Code bug'
+
+            else:
+                print 'Execution method is not yet implemented'
+
+        else:
+            print 'Deployment description is not available'
+
+    def onInterest_pullService(self, prefix, interest, face, interestFilterId, filter):
+        ### This function is used in ACM ICN where the SEG receive the trigger message to pull the service
+        interestName = interest.getName()
+        print "Interest Name: %s" %interestName
+        interest_name_components = interestName.toUri().split("/")
+        image_fileName = interest_name_components[interest_name_components.index("pull_Service") + 1]
+
+        if "pull_Service" in interest_name_components:
             if dockerctl.has_ServiceInfo(image_fileName) == True:
                 print 'Has description for service deployment'
                 ExecutionType = dockerctl.get_ExecutionType(image_fileName)
@@ -132,16 +205,20 @@ class Service_Execution_Main(object):
 
                 elif ExecutionType == 'kebapp':
                     print 'Service is kebapp'
-                    if dockerctl.has_imagefile(image_fileName) == True:
-                        print 'Load image and run service'
-                        dockerctl.run_kebapp_image(image_fileName)
-                    else:
+                    deployment_status = dockerctl.deployKEBAPP(image_fileName)
+                    if  deployment_status == 'pull_image':
                         print 'Service: %s is not locally cached, pull from Repo' % image_fileName
                         prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
                         print 'Sending Interest message: %s' % prefix_pullImage
                         self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
-                        timestamp_file = image_fileName + '.txt'
-                        self.StartTimeStamp_MigrationTime(timestamp_file)
+                        filename = image_fileName + '.txt'
+                        self.StartTimeStamp_MigrationTime(filename)
+                    elif deployment_status == 'done':
+                        print 'Service:%s is successfully deployed' %image_fileName
+                    elif deployment_status == 'error':
+                        print 'Error in deployment process'
+                    else:
+                        print 'Code bug'
                 else:
                     print 'Execution method is not yet implemented'
 
@@ -149,17 +226,6 @@ class Service_Execution_Main(object):
                 print 'Deployment description is not available'
         else:
             print "Interest name mismatch"
-
-    def onInterest_pullService(self, prefix, interest, face, interestFilterId, filter):
-        ### This function is used in ACM ICN where the SEG receive the trigger message to pull the service
-        interestName = interest.getName()
-        print "Interest Name: %s" %interestName
-        interest_name_components = interestName.toUri().split("/")
-        image_fileName = interest_name_components[interest_name_components.index("pull_Service") + 1]
-        if "pull_Service" in interest_name_components:
-            prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
-            print 'Sending Interest message: %s' % prefix_pullImage
-            self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
 
     def onRegisterFailed(self, prefix):
         print "Register failed for prefix", prefix.toUri()

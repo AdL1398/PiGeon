@@ -28,9 +28,9 @@ python_version  : Python 2.7.12
 
 
 import time
-#import docker
+import docker
 #Docker py older version
-from docker import Client
+#from docker import Client
 import os
 import subprocess
 
@@ -116,7 +116,7 @@ serviceInfo = {
                                   'type': 'singleWebContainer',
                                   'component': ['webserver.tar', 'nginx.tar']},
             'kebapp.tar.gz':{
-                                  'image_name': 'kebapp:latest',
+                                  'image_name': 'kebapp',
                                   'port_host': 'none',
                                   'port_container': 'none',
                                   'type': 'kebapp',
@@ -124,9 +124,9 @@ serviceInfo = {
                }
 
 ## dockerPy older version
-client = Client(base_url='unix://var/run/docker.sock', version='auto')
+#client = Client(base_url='unix://var/run/docker.sock', version='auto')
 
-#client = docker.APIClient(base_url='unix://var/run/docker.sock')
+client = docker.APIClient(base_url='unix://var/run/docker.sock')
 pulling_flag = False
 path = "SEG_repository"
 info = {}
@@ -210,6 +210,7 @@ def has_image(image_name):
 
 def is_image_running(image_name):
     for container in client.containers():
+        print container
         if container["Image"] == image_name:
             return True
     return False
