@@ -109,7 +109,6 @@ class Service_Execution_Main(object):
                         self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
                         filename = image_fileName + '.txt'
                         self.StartTimeStamp_MigrationTime(filename)
-
                     elif deployment_status == 'done':
                         print 'Service:%s is successfully deployed' %image_fileName
                         self.num_deployedContainer += 1
@@ -123,6 +122,19 @@ class Service_Execution_Main(object):
                     if dockerctl.has_imagefile(image_fileName) == True:
                         print 'Load image and run service'
                         dockerctl.run_DockerCompose_source(image_fileName)
+                    else:
+                        print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                        prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                        print 'Sending Interest message: %s' % prefix_pullImage
+                        self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                        timestamp_file = image_fileName + '.txt'
+                        self.StartTimeStamp_MigrationTime(timestamp_file)
+                        
+                elif ExecutionType == 'kebapp':
+                    print 'Service is kebapp'
+                    if dockerctl.has_imagefile(image_fileName) == True:
+                        print 'Load image and run service'
+                        dockerctl.run_kebapp_image(image_fileName)
                     else:
                         print 'Service: %s is not locally cached, pull from Repo' % image_fileName
                         prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)

@@ -114,7 +114,13 @@ serviceInfo = {
                                   'port_host': 8009,
                                   'port_container': 80,
                                   'type': 'singleWebContainer',
-                                  'component': ['webserver.tar', 'nginx.tar']}
+                                  'component': ['webserver.tar', 'nginx.tar']},
+            'kebapp.tar.gz':{
+                                  'image_name': 'kebapp:latest',
+                                  'port_host': 'none',
+                                  'port_container': 'none',
+                                  'type': 'kebapp',
+                                  'component': ['java.tar']},
                }
 
 ## dockerPy older version
@@ -255,6 +261,14 @@ def run_DockerCompose_source (image_filename):
     cmd = ServiceExecution_path + '/run_dockercompose.sh ' + dockerCompose_source_path
     print cmd
     os.system(cmd)
+
+def run_kebapp_image(image_name):
+    if has_image(image_name) == True:
+        print 'Start running image'
+        os.system("docker run -d --network=host kebapp")
+        print 'running image'
+        return is_image_running(image_name)
+    return False
 
 def get_freeport(num_con):
     if num_con+1 < len(assigned_port):
