@@ -224,7 +224,7 @@ class Service_Execution_Main(object):
                         dockerctl.run_DockerCompose_source(fileName)
 
                     elif ExecutionType == 'kebapp':
-                         if dockerctl.run_kebapp_image(fileName) == True:
+                         if dockerctl.deployKEBAPP(fileName) == True:
                             print 'Running docker image %s ...' % fileName
                          else:
                             print 'Error: Cannot run image %s' % fileName

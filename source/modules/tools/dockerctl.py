@@ -262,13 +262,51 @@ def run_DockerCompose_source (image_filename):
     print cmd
     os.system(cmd)
 
-def run_kebapp_image(image_name):
+def deployKEBAPP(image_fileName):
+
+    docker_image_name = serviceInfo[image_fileName]['image_name']
+    if is_image_running(docker_image_name) == True:
+        print 'Image: %s is already running' % docker_image_name
+        return 'done'
+    else:
+        ##image is not running
+        ##check docker client has this image or not
+        print 'Image: %s is NOT running' % docker_image_name
+        if has_image(docker_image_name) == True:
+            ## has image but image is not running
+            print 'Image: %s is already stored' % docker_image_name
+            if run_kebapp(docker_image_name) == True:
+                print 'Running docker image %s ...' % docker_image_name
+                return 'done'
+            else:
+                print 'Error: Cannot run image %s' % docker_image_name
+                return 'error'
+
+        elif has_imagefile(image_fileName) == True :
+            print 'Load image from local repository'
+
+            if (load_image(image_fileName)==True):
+                print 'Image %s is loaded' %image_fileName
+                if run_kebapp(docker_image_name) == True:
+                    print 'Running docker image %s ...' % docker_image_name
+                    return 'done'
+                else:
+                    print 'Error: Cannot run image %s' % docker_image_name
+                    return 'error'
+            else:
+                print 'Image: %s is not stored, pull from SC' % docker_image_name
+                ### Call sendNextInterest to SC
+                #prefix.requestService = (self.prefix_serviceMigration.append(Name(fileName)))
+                return 'pull_image'
+
+def run_kebapp(image_name):
     if has_image(image_name) == True:
-        print 'Start running image'
+        print 'Start running kebapp'
         os.system("docker run -d --network=host kebapp")
         print 'running image'
         return is_image_running(image_name)
     return False
+
 
 def get_freeport(num_con):
     if num_con+1 < len(assigned_port):
