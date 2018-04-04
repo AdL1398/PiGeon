@@ -129,7 +129,7 @@ class Service_Execution_Main(object):
                         self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
                         timestamp_file = image_fileName + '.txt'
                         self.StartTimeStamp_MigrationTime(timestamp_file)
-                        
+
                 elif ExecutionType == 'kebapp':
                     print 'Service is kebapp'
                     if dockerctl.has_imagefile(image_fileName) == True:
@@ -219,8 +219,15 @@ class Service_Execution_Main(object):
                         print 'Deployment uses dockerctl'
                         if dockerctl.deployContainer(fileName, self.num_deployedContainer) == 'error':
                             print 'Image:%s cannot be deployed' %fileName
+
                     elif ExecutionType == 'DockerCompose':
                         dockerctl.run_DockerCompose_source(fileName)
+
+                    elif ExecutionType == 'kebapp':
+                         if dockerctl.run_kebapp_image(fileName) == True:
+                            print 'Running docker image %s ...' % fileName
+                         else:
+                            print 'Error: Cannot run image %s' % fileName
                     else:
                         print 'Execution method is not yet implemented'
 
