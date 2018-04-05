@@ -22,7 +22,6 @@ class trigger(object):
         self.script_path = os.path.abspath(__file__) # i.e. /path/to/dir/foobar.py
         self.script_dir = os.path.split(self.script_path)[0] #i.e. /path/to/dir/
         self.prefix_DE = "/picasso/start_de/"
-        self.prefix_pullService = "/picasso/pull_Service/"
         self.prefix_pushService = "/picasso/service_deployment_push/"
 
         # Default configuration of NDN
@@ -40,15 +39,15 @@ class trigger(object):
             #self.sendNextInterest(self.prefix_serviceMigration)
 
             print 'Select Migration Method'
-            print '   (a) push'
-            print '   (b) pull'
+            print '   (a) push @Service Managet'
+            print '   (b) pull @SEG'
             method = raw_input('Choose method to migrate service (type code, e.g., a): ')
             if method == 'a':
                 print 'Migrate by PUSH'
-                type_name = self.prefix_pushService
+                type_name = self.prefix_DE
             elif method == 'b':
                 print 'Migrate by PULL'
-                type_name = self.prefix_pullService
+                type_name = self.prefix_pushService
             else:
                 print 'Chosen type is not available'
 
