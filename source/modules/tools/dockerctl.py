@@ -301,12 +301,12 @@ def deployKEBAPP(image_fileName):
                 return 'pull_image'
 
 def run_kebapp(image_name):
-    if has_image(image_name) == True:
-        print 'Start running kebapp'
-        os.system("docker run -d --network=host kebapp")
-        print 'running image'
-        return is_image_running(image_name)
-    return False
+    #if has_image(image_name) == True:
+    print 'Start running kebapp'
+    os.system("docker run -d --network=host kebapp")
+    print 'running image'
+    return is_image_running(image_name)
+    #return False
 
 
 def get_freeport(num_con):
