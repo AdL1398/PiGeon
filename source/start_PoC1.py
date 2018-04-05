@@ -38,19 +38,6 @@ class trigger(object):
             # send Interest message to retrieve data
             #self.sendNextInterest(self.prefix_serviceMigration)
 
-            print 'Select Migration Method'
-            print '   (a) push @Service Manager'
-            print '   (b) pull @SEG'
-            method = raw_input('Choose method to migrate service (type code, e.g., a): ')
-            if method == 'a':
-                print 'Migrate by PUSH'
-                type_name = self.prefix_DE
-            elif method == 'b':
-                print 'Migrate by PULL'
-                type_name = self.prefix_pushService
-            else:
-                print 'Chosen type is not available'
-
             print 'Select Service '
             print '   (1) umobilestore'
             print '   (2) cloudrone'
@@ -69,10 +56,23 @@ class trigger(object):
             else:
                 print 'Chosen service is not available'
 
-            name_prefix = type_name + service_name + '.tar.gz'
+            print 'Select Migration Method'
+            print '   (a) push @Service Manager'
+            print '   (b) pull @SEG'
+            method = raw_input('Choose method to migrate service (type code, e.g., a): ')
+            if method == 'a':
+                print 'Migrate by PUSH'
+                input_node = raw_input('Select node to migrate service (e.g., SEG_1): ')
+                name_prefix = self.prefix_DE + service_name + '.tar.gz' + '/' + input_node
+
+            elif method == 'b':
+                print 'Migrate by PULL'
+                name_prefix = self.prefix_pushService + service_name + '.tar.gz'
+            else:
+                print 'Chosen type is not available'
+
             print 'name prefix: %s' % name_prefix
             self.sendInterest(Name(name_prefix))
-
 
         except RuntimeError as e:
             print "ERROR: %s" % e

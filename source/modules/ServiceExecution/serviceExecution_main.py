@@ -41,7 +41,7 @@ class Service_Execution_Main(object):
         self.configPrefix = Name(namePrefix)
         prefix_pullService = "/picasso/pull_Service/"
         self.prefix_pullService = Name(prefix_pullService)
-        self.Datamessage_size = 2000000 #2MB --> Max Size from modified NDN
+        self.Datamessage_size = 34000000 #20MB --> Max Size from modified NDN
         self.window = 5
         self.producerName = producerName
         self.outstanding = dict()
@@ -50,7 +50,7 @@ class Service_Execution_Main(object):
         self.face = Face("127.0.0.1")
         self.script_path = os.path.abspath(__file__) # i.e. /path/to/dir/foobar.py
         self.script_dir = os.path.split(self.script_path)[0] #i.e. /path/to/dir/
-        self.interestLifetime = 8000
+        self.interestLifetime = 800000
         self.num_deployedContainer = 0
         self.lastChunk_window = 0
         self.lastChunk_sent = 0
