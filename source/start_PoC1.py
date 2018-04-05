@@ -22,7 +22,7 @@ class trigger(object):
         self.script_path = os.path.abspath(__file__) # i.e. /path/to/dir/foobar.py
         self.script_dir = os.path.split(self.script_path)[0] #i.e. /path/to/dir/
         self.prefix_DE = "/picasso/start_de/"
-        self.prefix_pushService = "/picasso/service_deployment_push/SEG_1"
+        self.prefix_pushService = "/picasso/service_deployment_push/SEG_1/"
 
         # Default configuration of NDN
         self.outstanding = dict()
