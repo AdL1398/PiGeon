@@ -90,65 +90,69 @@ class Service_Execution_Main(object):
         os.system(delete_service_command)
         print "Interest Name: %s" %interestName
         interest_name_components = interestName.toUri().split("/")
-        print 'Deploy service: %s' %image_fileName
         print 'Start service deployment'
+        if "service_deployment_push" in interest_name_components:
+            image_fileName = interest_name_components[interest_name_components.index("service_deployment_push") + 2]
+            print 'Deploy service: %s' %image_fileName
+            print 'Start service deployment'
+            if dockerctl.has_ServiceInfo(image_fileName) == True:
+                print 'Has description for service deployment'
+                ExecutionType = dockerctl.get_ExecutionType(image_fileName)
+                if ExecutionType == 'singleWebContainer':
+                    print 'Deployment uses dockerctl'
+                    deployment_status = dockerctl.deployContainer(image_fileName, self.num_deployedContainer)
+                    if  deployment_status == 'pull_image':
+                        print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                        prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                        print 'Sending Interest message: %s' % prefix_pullImage
+                        self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                        filename = image_fileName + '.txt'
+                        self.StartTimeStamp_MigrationTime(filename)
+                    elif deployment_status == 'done':
+                        print 'Service:%s is successfully deployed' %image_fileName
+                        self.num_deployedContainer += 1
+                    elif deployment_status == 'error':
+                        print 'Error in deployment process'
+                    else:
+                        print 'Code bug'
 
-        if dockerctl.has_ServiceInfo(image_fileName) == True:
-            print 'Has description for service deployment'
-            ExecutionType = dockerctl.get_ExecutionType(image_fileName)
-            if ExecutionType == 'singleWebContainer':
-                print 'Deployment uses dockerctl'
-                deployment_status = dockerctl.deployContainer(image_fileName, self.num_deployedContainer)
-                if  deployment_status == 'pull_image':
-                    print 'Service: %s is not locally cached, pull from Repo' % image_fileName
-                    prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
-                    print 'Sending Interest message: %s' % prefix_pullImage
-                    self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
-                    filename = image_fileName + '.txt'
-                    self.StartTimeStamp_MigrationTime(filename)
-                elif deployment_status == 'done':
-                    print 'Service:%s is successfully deployed' %image_fileName
-                    self.num_deployedContainer += 1
-                elif deployment_status == 'error':
-                    print 'Error in deployment process'
-                else:
-                    print 'Code bug'
+                elif ExecutionType == 'DockerCompose':
+                    print 'Deployment uses docker compose'
+                    if dockerctl.has_imagefile(image_fileName) == True:
+                        print 'Load image and run service'
+                        dockerctl.run_DockerCompose_source(image_fileName)
+                    else:
+                        print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                        prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                        print 'Sending Interest message: %s' % prefix_pullImage
+                        self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                        timestamp_file = image_fileName + '.txt'
+                        self.StartTimeStamp_MigrationTime(timestamp_file)
 
-            elif ExecutionType == 'DockerCompose':
-                print 'Deployment uses docker compose'
-                if dockerctl.has_imagefile(image_fileName) == True:
-                    print 'Load image and run service'
-                    dockerctl.run_DockerCompose_source(image_fileName)
-                else:
-                    print 'Service: %s is not locally cached, pull from Repo' % image_fileName
-                    prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
-                    print 'Sending Interest message: %s' % prefix_pullImage
-                    self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
-                    timestamp_file = image_fileName + '.txt'
-                    self.StartTimeStamp_MigrationTime(timestamp_file)
+                elif ExecutionType == 'kebapp':
+                    print 'Service is kebapp'
+                    deployment_status = dockerctl.deployKEBAPP(image_fileName)
+                    if  deployment_status == 'pull_image':
+                        print 'Service: %s is not locally cached, pull from Repo' % image_fileName
+                        prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
+                        print 'Sending Interest message: %s' % prefix_pullImage
+                        self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                        filename = image_fileName + '.txt'
+                        self.StartTimeStamp_MigrationTime(filename)
+                    elif deployment_status == 'done':
+                        print 'Service:%s is successfully deployed' %image_fileName
+                    elif deployment_status == 'error':
+                        print 'Error in deployment process'
+                    else:
+                        print 'Code bug'
 
-            elif ExecutionType == 'kebapp':
-                print 'Service is kebapp'
-                deployment_status = dockerctl.deployKEBAPP(image_fileName)
-                if  deployment_status == 'pull_image':
-                    print 'Service: %s is not locally cached, pull from Repo' % image_fileName
-                    prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
-                    print 'Sending Interest message: %s' % prefix_pullImage
-                    self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
-                    filename = image_fileName + '.txt'
-                    self.StartTimeStamp_MigrationTime(filename)
-                elif deployment_status == 'done':
-                    print 'Service:%s is successfully deployed' %image_fileName
-                elif deployment_status == 'error':
-                    print 'Error in deployment process'
                 else:
-                    print 'Code bug'
+                    print 'Execution method is not yet implemented'
 
             else:
-                print 'Execution method is not yet implemented'
-
+                print 'Deployment description is not available'
         else:
-            print 'Deployment description is not available'
+                print "Interest name mismatch"
 
     def onRegisterFailed(self, prefix):
         print "Register failed for prefix", prefix.toUri()
