@@ -90,7 +90,6 @@ class Service_Execution_Main(object):
         os.system(delete_service_command)
         print "Interest Name: %s" %interestName
         interest_name_components = interestName.toUri().split("/")
-        print 'Start service deployment'
         if "service_deployment_push" in interest_name_components:
             image_fileName = interest_name_components[interest_name_components.index("service_deployment_push") + 2]
             print 'Deploy service: %s' %image_fileName

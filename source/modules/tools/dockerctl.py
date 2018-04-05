@@ -283,17 +283,17 @@ def deployKEBAPP(image_fileName):
                 print 'Error: Cannot run image %s' % docker_image_name
                 return 'error'
 
-        elif has_imagefile(image_fileName) == True :
-            print 'Load image from local repository'
-
-            if (load_image(image_fileName)==True):
-                print 'Image %s is loaded' %image_fileName
-                if run_kebapp(docker_image_name) == True:
-                    print 'Running docker image %s ...' % docker_image_name
-                    return 'done'
-                else:
-                    print 'Error: Cannot run image %s' % docker_image_name
-                    return 'error'
+        else:
+            if has_imagefile(image_fileName) == True :
+                print 'Load image from local repository'
+                if (load_image(image_fileName)==True):
+                    print 'Image %s is loaded' %image_fileName
+                    if run_kebapp(docker_image_name) == True:
+                        print 'Running docker image %s ...' % docker_image_name
+                        return 'done'
+                    else:
+                        print 'Error: Cannot run image %s' % docker_image_name
+                        return 'error'
             else:
                 print 'Image: %s is not stored, pull from SC' % docker_image_name
                 ### Call sendNextInterest to SC
