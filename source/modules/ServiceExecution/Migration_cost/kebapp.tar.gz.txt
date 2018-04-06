@@ -1,0 +1,150 @@
+Service Migration Start:  Fri Apr  6 16:11:22 2018
+Start:  1523027482.44
+Service Migration Start:  Fri Apr  6 16:12:18 2018
+Start:  1523027538.29
+Service Migration Start:  Fri Apr  6 16:13:12 2018
+Start:  1523027592.62
+Service Migration Start:  Fri Apr  6 19:25:51 2018
+Start:  1523039151.97
+Service Migration Start:  Fri Apr  6 19:29:17 2018
+Start:  1523039357.05
+Service Migration Start:  Fri Apr  6 19:32:09 2018
+Start:  1523039529.06
+Service Migration Start:  Fri Apr  6 19:35:36 2018
+Start:  1523039736.71
+Service Migration Start:  Fri Apr  6 19:38:48 2018
+Start:  1523039928.07
+Service Migration Start:  Fri Apr  6 19:41:44 2018
+Start:  1523040104.38
+Service Migration Start:  Fri Apr  6 19:44:28 2018
+Start:  1523040268.52
+Extracting_Start: 1523040269.48
+Extracting_End: 1523040270.27
+Extracting_Start: 1523040270.38
+Extracting_End: 1523040271.17
+Extracting_Start: 1523040271.17
+Extracting_End: 1523040271.95
+Extracting_Start: 1523040271.95
+Extracting_End: 1523040272.74
+Extracting_Start: 1523040272.74
+Extracting_End: 1523040273.51
+Extracting_Start: 1523040273.51
+Extracting_End: 1523040274.28
+Extracting_Start: 1523040274.28
+Extracting_End: 1523040275.06
+Extracting_Start: 1523040275.06
+Extracting_End: 1523040275.83
+Extracting_Start: 1523040275.83
+Extracting_End: 1523040276.58
+Extracting_Start: 1523040276.59
+Extracting_End: 1523040277.36
+Extracting_Start: 1523040277.36
+Extracting_End: 1523040278.14
+Extracting_Start: 1523040278.14
+Extracting_End: 1523040278.9
+Extracting_Start: 1523040278.9
+Extracting_End: 1523040279.67
+Extracting_Start: 1523040279.68
+Extracting_End: 1523040280.44
+Extracting_Start: 1523040280.44
+Extracting_End: 1523040281.21
+Extracting_Start: 1523040281.21
+Extracting_End: 1523040281.98
+Extracting_Start: 1523040281.98
+Extracting_End: 1523040282.73
+Extracting_Start: 1523040282.74
+Extracting_End: 1523040283.52
+Extracting_Start: 1523040283.52
+Extracting_End: 1523040284.28
+Extracting_Start: 1523040284.29
+Extracting_End: 1523040285.05
+Extracting_Start: 1523040285.05
+Extracting_End: 1523040285.82
+Extracting_Start: 1523040285.82
+Extracting_End: 1523040286.59
+Extracting_Start: 1523040286.59
+Extracting_End: 1523040287.37
+Extracting_Start: 1523040287.37
+Extracting_End: 1523040288.14
+Extracting_Start: 1523040288.14
+Extracting_End: 1523040288.91
+Extracting_Start: 1523040288.92
+Extracting_End: 1523040289.68
+Extracting_Start: 1523040289.68
+Extracting_End: 1523040290.43
+Extracting_Start: 1523040290.43
+Extracting_End: 1523040291.17
+Extracting_Start: 1523040291.17
+Extracting_End: 1523040291.9
+Extracting_Start: 1523040291.9
+Extracting_End: 1523040292.65
+Extracting_Start: 1523040292.65
+Extracting_End: 1523040293.39
+Extracting_Start: 1523040293.39
+Extracting_End: 1523040293.89
+Service Migration Finish:  Fri Apr  6 19:44:53 2018
+Finish: 1523040293.89
+Extracting_Start: 1523040294.8
+Extracting_End: 1523040295.33
+Service Migration Finish:  Fri Apr  6 19:44:55 2018
+Finish: 1523040295.33
+Service Migration Start:  Fri Apr  6 19:46:51 2018
+Start:  1523040411.5
+Service Migration Start:  Fri Apr  6 19:57:12 2018
+Start:  1523041032.69
+Service Migration Start:  Fri Apr  6 19:58:55 2018
+Start:  1523041135.25
+Service Migration Start:  Fri Apr  6 20:00:44 2018
+Start:  1523041244.36
+Service Migration Start:  Fri Apr  6 20:05:22 2018
+Start:  1523041522.33
+Service Migration Start:  Fri Apr  6 20:07:04 2018
+Start:  1523041624.16
+Service Migration Start:  Fri Apr  6 20:08:30 2018
+Start:  1523041710.41
+Service Migration Start:  Fri Apr  6 20:10:26 2018
+Start:  1523041826.19
+Service Migration Finish:  Fri Apr  6 20:10:26 2018
+Finish: 1523041826.26
+Service Migration Start:  Fri Apr  6 20:14:52 2018
+Start:  1523042092.22
+Service Migration Finish:  Fri Apr  6 20:15:06 2018
+Finish: 1523042106.8
+Service Migration Start:  Fri Apr  6 20:31:43 2018
+Start:  1523043103.94
+Extracting_Start: 1523043103.97
+Extracting_End: 1523043104.71
+Extracting_Start: 1523043104.72
+Extracting_End: 1523043105.49
+Extracting_Start: 1523043105.49
+Extracting_End: 1523043106.25
+Extracting_Start: 1523043106.25
+Extracting_End: 1523043107.0
+Extracting_Start: 1523043107.0
+Extracting_End: 1523043107.75
+Extracting_Start: 1523043107.75
+Extracting_End: 1523043108.48
+Extracting_Start: 1523043108.49
+Extracting_End: 1523043109.23
+Extracting_Start: 1523043109.24
+Extracting_End: 1523043109.98
+Extracting_Start: 1523043109.98
+Extracting_End: 1523043110.72
+Extracting_Start: 1523043110.73
+Extracting_End: 1523043111.46
+Extracting_Start: 1523043111.47
+Extracting_End: 1523043112.21
+Extracting_Start: 1523043112.21
+Extracting_End: 1523043112.96
+Extracting_Start: 1523043112.96
+Extracting_End: 1523043113.7
+Extracting_Start: 1523043113.7
+Extracting_End: 1523043114.44
+Extracting_Start: 1523043114.45
+Extracting_End: 1523043115.18
+Extracting_Start: 1523043115.18
+Extracting_End: 1523043115.92
+Extracting_Start: 1523043115.92
+Extracting_End: 1523043116.43
+Service Migration Finish:  Fri Apr  6 20:31:56 2018
+Finish: 1523043116.43

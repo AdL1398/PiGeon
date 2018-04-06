@@ -41,7 +41,7 @@ class Service_Execution_Main(object):
         self.configPrefix = Name(namePrefix)
         prefix_pullService = "/picasso/pull_Service/"
         self.prefix_pullService = Name(prefix_pullService)
-        self.Datamessage_size = 34000000 #20MB --> Max Size from modified NDN
+        self.Datamessage_size = 2000000 #20MB --> Max Size from modified NDN
         self.window = 5
         self.producerName = producerName
         self.outstanding = dict()
@@ -135,7 +135,7 @@ class Service_Execution_Main(object):
                         print 'Service: %s is not locally cached, pull from Repo' % image_fileName
                         prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
                         print 'Sending Interest message: %s' % prefix_pullImage
-                        self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
+                        self._sendMultipleInterest(prefix_pullImage, self.interestLifetime, 'pull', image_fileName)
                         filename = image_fileName + '.txt'
                         self.StartTimeStamp_MigrationTime(filename)
                     elif deployment_status == 'done':
@@ -157,6 +157,24 @@ class Service_Execution_Main(object):
         print "Register failed for prefix", prefix.toUri()
         self.isDone = True
 
+    def _sendMultipleInterest(self, name, lifetime, mode, filename):
+        folder_name = "ServiceRepo/SC_repository/"
+        parent_dir = os.path.split(self.script_dir)[0]
+        file_path = os.path.join(parent_dir, folder_name, filename)
+        print 'file path: %s' %(file_path)
+        SegmentNum=0
+        dataSegment, last_segment_num = EnumeratePublisher(file_path, self.Datamessage_size, SegmentNum).getFileSegment()
+        print 'SegmentNum:%s last_segment_num: %s' %(SegmentNum, last_segment_num)
+        #dataName_size = dataName.size()
+        for chunkID in range (SegmentNum, last_segment_num + 1):
+            interest = Interest(name)
+            interest.setInterestLifetimeMilliseconds(lifetime)
+            interest.setMustBeFresh(True)
+            prefixName = interest.getName()
+            interestName = prefixName.appendSegment(chunkID)
+            print "Sent Pull Interest for %s" % interestName
+            self.face.expressInterest(interest, self._onDataMultiple, self._onTimeout)
+
     def _sendNextInterest(self, name, lifetime, mode):
         interest = Interest(name)
         uri = name.toUri()
@@ -176,7 +194,53 @@ class Service_Execution_Main(object):
         else:
             print "send Interest mode mismatch"
 
+    def _onDataMultiple(self, interest, data):
+        print 'in onDataMultiple'
+        payload = data.getContent()
+        dataName = data.getName()
+        dataName_size = dataName.size()
+        print "Received data name: ", dataName.toUri()
+        data_name_components = dataName.toUri().split("/")
+        if "service_deployment_pull" in data_name_components:
+            fileName = data_name_components[data_name_components.index("service_deployment_pull") + 1]
+            rel_path = "SEG_repository"
+            abs_path = os.path.join(self.script_dir, rel_path)
+            print "path of SEG_repository:%s" %abs_path
+            print "Service File name:%s" %fileName
+            file_path = os.path.join(abs_path, fileName)
+            dataSegmentNum = (dataName.get(dataName_size - 1)).toSegment()
+            lastSegmentNum = (data.getMetaInfo().getFinalBlockId()).toNumber()
+            print "dataSegmentNum" + str(dataSegmentNum)
+            print "lastSegmentNum" + str(lastSegmentNum)
+            if dataSegmentNum == 0:
+                print 'Start counting received chunks'
+                self.StartCountingReceivedChunks(dataSegmentNum, lastSegmentNum+1)
+            else:
+                self.UpdatingReceivedChunks(dataSegmentNum)
+
+            if self.ensemble_MultipleDataChunk(abs_path, fileName, data) == True:
+                timestamp_file = fileName + '.txt'
+                self.StopTimeStamp_MigrationTime(timestamp_file )
+                print 'Load image and run service'
+                if dockerctl.has_ServiceInfo(fileName) == True:
+                    print 'Has description for service deployment'
+                    ExecutionType = dockerctl.get_ExecutionType(fileName)
+                    if ExecutionType == 'singleWebContainer':
+                        print 'Deployment uses dockerctl'
+                        if dockerctl.deployContainer(fileName, self.num_deployedContainer) == 'error':
+                            print 'Image:%s cannot be deployed' %fileName
+                    elif ExecutionType == 'DockerCompose':
+                        dockerctl.run_DockerCompose_source(fileName)
+                    elif ExecutionType == 'kebapp':
+                         if dockerctl.deployKEBAPP(fileName) == True:
+                            print 'Running docker image %s ...' % fileName
+                         else:
+                            print 'Error: Cannot run image %s' % fileName
+                    else:
+                        print 'Execution method is not yet implemented'
+
     def _onData(self, interest, data):
+        print 'in onData'
         payload = data.getContent()
         dataName = data.getName()
         dataName_size = dataName.size()
@@ -245,6 +309,32 @@ class Service_Execution_Main(object):
         else:
             #self.isDone = True
             print 'Cannot pull content for Interest: %s' %name
+
+    def ensemble_MultipleDataChunk(self,path, fileName, data):
+        payload = data.getContent()
+        dataName = data.getName()
+        dataName_size = dataName.size()
+        timestamp_file = fileName + '.txt'
+        self.StartExtraction_TimeStamp(timestamp_file)
+        print "Extracting Data message name: ", dataName.toUri()
+        if not os.path.exists(path):
+                os.makedirs(path)
+
+        with open(os.path.join(path, fileName), 'ab') as temp_file:
+            temp_file.write(payload.toRawStr())
+        try:
+            dataSegmentNum = (dataName.get(dataName_size - 1)).toSegment()
+            lastSegmentNum = (data.getMetaInfo().getFinalBlockId()).toNumber()
+            self.FinishExtraction_TimeStamp(timestamp_file)
+
+            TotalReceivedChunk = sum(list(self.receivedContentChunk))
+            if TotalReceivedChunk == lastSegmentNum+1:
+                print "Received complete image: %s, EXECUTED !!!!" % fileName
+                return True
+
+        except RuntimeError as e:
+                print "ERROR: %s" % e
+                self.isDone = True
 
     def request_SubsequenceDataChunk(self, path, fileName, data, window):
         payload = data.getContent()
