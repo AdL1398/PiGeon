@@ -135,7 +135,7 @@ class Service_Execution_Main(object):
                         print 'Service: %s is not locally cached, pull from Repo' % image_fileName
                         prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
                         print 'Sending Interest message: %s' % prefix_pullImage
-                        self._sendMultipleInterest(prefix_pullImage, self.interestLifetime, 'pull', image_fileName)
+                        #self._sendMultipleInterest(prefix_pullImage, self.interestLifetime, 'pull', image_fileName)
                         self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
                         filename = image_fileName + '.txt'
                         self.StartTimeStamp_MigrationTime(filename)
