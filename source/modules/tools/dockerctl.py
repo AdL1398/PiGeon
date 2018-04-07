@@ -124,9 +124,9 @@ serviceInfo = {
                }
 
 ## dockerPy older version
-client = Client(base_url='unix://var/run/docker.sock', version='auto')
+#client = Client(base_url='unix://var/run/docker.sock', version='auto')
 
-#client = docker.APIClient(base_url='unix://var/run/docker.sock')
+client = docker.APIClient(base_url='unix://var/run/docker.sock')
 pulling_flag = False
 path = "SEG_repository"
 info = {}
