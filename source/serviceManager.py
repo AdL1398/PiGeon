@@ -23,8 +23,8 @@ import traceback
 from threading import Timer, Thread, Event
 
 from modules.DecisionEngine.decisionEngine_thread import Decision_Engine
-from modules.Monitoring.monitoringManager_thread import Monitoring_Manager
-from modules.ServiceRepo.serviceRepo_thread import Service_Repo
+#from modules.Monitoring.monitoringManager_thread import Monitoring_Manager
+#from modules.ServiceRepo.serviceRepo_thread import Service_Repo
 
 
 class ServiceManager(object):
