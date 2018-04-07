@@ -28,9 +28,9 @@ python_version  : Python 2.7.12
 
 
 import time
-#import docker
+import docker
 #Docker py older version
-from docker import Client
+#from docker import Client
 import os
 import subprocess
 
