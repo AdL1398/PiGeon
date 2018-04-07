@@ -41,7 +41,7 @@ class Service_Execution_Main(object):
         self.configPrefix = Name(namePrefix)
         prefix_pullService = "/picasso/pull_Service/"
         self.prefix_pullService = Name(prefix_pullService)
-        self.Datamessage_size = 2000000 #20MB --> Max Size from modified NDN
+        self.Datamessage_size = 19900000 #20MB --> Max Size from modified NDN
         self.window = 5
         self.producerName = producerName
         self.outstanding = dict()
@@ -136,6 +136,7 @@ class Service_Execution_Main(object):
                         prefix_pullImage = Name("/picasso/service_deployment_pull/" + image_fileName)
                         print 'Sending Interest message: %s' % prefix_pullImage
                         self._sendMultipleInterest(prefix_pullImage, self.interestLifetime, 'pull', image_fileName)
+                        self._sendNextInterest(prefix_pullImage, self.interestLifetime, 'pull')
                         filename = image_fileName + '.txt'
                         self.StartTimeStamp_MigrationTime(filename)
                     elif deployment_status == 'done':
