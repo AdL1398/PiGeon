@@ -41,7 +41,7 @@ class Service_Execution_Main(object):
         self.configPrefix = Name(namePrefix)
         prefix_pullService = "/picasso/pull_Service/"
         self.prefix_pullService = Name(prefix_pullService)
-        self.Datamessage_size = 20000000 #20MB --> Max Size from modified NDN
+        self.Datamessage_size = 19000000 #20MB --> Max Size from modified NDN
         self.window = 5
         self.producerName = producerName
         self.outstanding = dict()
