@@ -15,10 +15,10 @@ sleep 10s
 ### restart NFD  
 nfd-start
 ### create DTN face
-#nfdc create dtn://umobile-pi-2/nfd
+nfdc create dtn://umobile-pi-1/nfd
 ### add NFD routing info to FIB by using DTN face
-#nfdc register /picasso/service_deployment_pull dtn://umobile-pi-2/nfd
+nfdc register /picasso/service_deployment_pull dtn://umobile-pi-1/nfd
 
 ## For testing ### 
-nfdc create tcp://192.168.0.150
-nfdc register /picasso/service_deployment_pull tcp://192.168.0.150
+#nfdc create tcp://192.168.0.150
+#nfdc register /picasso/service_deployment_pull tcp://192.168.0.150

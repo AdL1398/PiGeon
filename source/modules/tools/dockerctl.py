@@ -115,7 +115,7 @@ serviceInfo = {
                                   'port_container': 80,
                                   'type': 'singleWebContainer',
                                   'component': ['webserver.tar', 'nginx.tar']},
-            'kebapp.tar.gz':{
+            'kebapp.tar.xz':{
                                   'image_name': 'kebapp',
                                   'port_host': 'none',
                                   'port_container': 'none',

@@ -42,7 +42,7 @@ class Decision_Engine_Main(object):
         self.script_dir = os.path.split(self.script_path)[0] #i.e. /path/to/dir/
         self.interestLifetime = 800000
         #self.Datamessage_size = 1999000
-        self.Datamessage_size = 19000000
+        self.Datamessage_size = 19990000
         folder_name = "SC_repository/"
         rel_path = os.path.join(self.script_dir, folder_name)
         prefix_startDE = "/picasso/start_de/"

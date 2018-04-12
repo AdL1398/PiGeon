@@ -11,8 +11,9 @@ sleep 10s
 ### restart NFD  
 nfd-start
 ### create DTN face 
-#nfdc create dtn://umobile-pi-1/nfd
+nfdc create dtn://umobile-pi-2/nfd
+nfdc register  /picasso/service_deployment_push/SEG_1 dtn://umobile-pi-2/nfd
 
 ## For testing 
-nfdc create tcp://192.168.0.248
-nfdc register  /picasso/service_deployment_push/SEG_1 tcp://192.168.0.248
+#nfdc create tcp://192.168.0.248
+#nfdc register  /picasso/service_deployment_push/SEG_1 tcp://192.168.0.248

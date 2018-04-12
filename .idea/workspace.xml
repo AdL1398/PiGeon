@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd27f6be-3b3e-49da-a586-ee33db7df635" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/source/modules/ServiceRepo/SC_repository/kebapp.tar.gz" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/demo_PoC1_SM.sh" afterPath="$PROJECT_DIR$/source/demo_PoC1_SM.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/demo_PoC1_seg.sh" afterPath="$PROJECT_DIR$/source/demo_PoC1_seg.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py" afterPath="$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py" afterPath="$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/modules/tools/dockerctl.py" afterPath="$PROJECT_DIR$/source/modules/tools/dockerctl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/start_PoC1.py" afterPath="$PROJECT_DIR$/source/start_PoC1.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+              <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -27,8 +34,8 @@
       <file leaf-file-name="decisionEngine_main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+            <state relative-caret-position="235">
+              <caret line="44" column="40" lean-forward="false" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
               <folding>
                 <element signature="e#567#576#0" expanded="true" />
               </folding>
@@ -36,11 +43,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dockerctl.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dockerctl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/modules/tools/dockerctl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="324" column="25" lean-forward="false" selection-start-line="324" selection-start-column="24" selection-end-line="324" selection-end-column="25" />
+            <state relative-caret-position="459">
+              <caret line="126" column="68" lean-forward="false" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="start_PoC1.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/start_PoC1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-14">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,11 +93,11 @@
         <option value="$PROJECT_DIR$/source/modules/start_pushSM.py" />
         <option value="$PROJECT_DIR$/source/start_pushSM.py" />
         <option value="$PROJECT_DIR$/source/seg.py" />
-        <option value="$PROJECT_DIR$/source/start_PoC1.py" />
         <option value="$PROJECT_DIR$/source/serviceManager.py" />
-        <option value="$PROJECT_DIR$/source/modules/tools/dockerctl.py" />
         <option value="$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py" />
         <option value="$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py" />
+        <option value="$PROJECT_DIR$/source/modules/tools/dockerctl.py" />
+        <option value="$PROJECT_DIR$/source/start_PoC1.py" />
       </list>
     </option>
   </component>
@@ -91,10 +108,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-441" />
-    <option name="y" value="-1111" />
-    <option name="width" value="1572" />
-    <option name="height" value="909" />
+    <option name="x" value="134" />
+    <option name="y" value="-662" />
+    <option name="width" value="1341" />
+    <option name="height" value="1035" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -111,7 +128,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -174,28 +190,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PiGeon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PiGeon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="ServiceExecution" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -225,6 +219,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -263,10 +258,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-441" y="-1111" width="1572" height="909" extended-state="0" />
+    <frame x="134" y="-662" width="1341" height="1035" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18366013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21862972" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -301,6 +296,32 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+          <folding>
+            <element signature="e#567#576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/modules/tools/dockerctl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4860">
+          <caret line="324" column="25" lean-forward="false" selection-start-line="324" selection-start-column="24" selection-end-line="324" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
@@ -432,13 +453,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/start_PoC1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="69" column="44" lean-forward="false" selection-start-line="69" selection-start-column="44" selection-end-line="69" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/picasso_migration.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="917">
@@ -456,15 +470,15 @@
     <entry file="file://$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+        <state relative-caret-position="235">
+          <caret line="44" column="40" lean-forward="false" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
           <folding>
             <element signature="e#567#576#0" expanded="true" />
           </folding>
@@ -473,8 +487,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/modules/tools/dockerctl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="324" column="25" lean-forward="false" selection-start-line="324" selection-start-column="24" selection-end-line="324" selection-end-column="25" />
+        <state relative-caret-position="459">
+          <caret line="126" column="68" lean-forward="false" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/start_PoC1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>

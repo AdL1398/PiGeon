@@ -67,7 +67,7 @@ class trigger(object):
 
             elif method == 'b':
                 print 'Migrate by PULL'
-                name_prefix = self.prefix_pushService + service_name + '.tar.gz'
+                name_prefix = self.prefix_pushService + service_name + '.tar.xz'
             else:
                 print 'Chosen type is not available'
 
