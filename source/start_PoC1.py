@@ -63,7 +63,7 @@ class trigger(object):
             if method == 'a':
                 print 'Migrate by PUSH'
                 input_node = raw_input('Select node to migrate service (e.g., SEG_1): ')
-                name_prefix = self.prefix_DE + service_name + '.tar.gz' + '/' + input_node
+                name_prefix = self.prefix_DE + service_name + '.tar.xz' + '/' + input_node
 
             elif method == 'b':
                 print 'Migrate by PULL'

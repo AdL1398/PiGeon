@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd27f6be-3b3e-49da-a586-ee33db7df635" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/modules/ServiceRepo/SC_repository/kebapp.tar.gz" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/demo_PoC1_SM.sh" afterPath="$PROJECT_DIR$/source/demo_PoC1_SM.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/demo_PoC1_seg.sh" afterPath="$PROJECT_DIR$/source/demo_PoC1_seg.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py" afterPath="$PROJECT_DIR$/source/modules/DecisionEngine/decisionEngine_main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py" afterPath="$PROJECT_DIR$/source/modules/ServiceExecution/serviceExecution_main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/modules/tools/dockerctl.py" afterPath="$PROJECT_DIR$/source/modules/tools/dockerctl.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/start_PoC1.py" afterPath="$PROJECT_DIR$/source/start_PoC1.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +39,7 @@
       <file leaf-file-name="dockerctl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/modules/tools/dockerctl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
+            <state relative-caret-position="899">
               <caret line="126" column="68" lean-forward="false" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
               <folding />
             </state>
@@ -56,8 +49,8 @@
       <file leaf-file-name="start_PoC1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/start_PoC1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="343">
+              <caret line="65" column="69" lean-forward="false" selection-start-line="65" selection-start-column="69" selection-end-line="65" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -108,8 +101,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="134" />
-    <option name="y" value="-662" />
+    <option name="x" value="67" />
+    <option name="y" value="-706" />
     <option name="width" value="1341" />
     <option name="height" value="1035" />
   </component>
@@ -169,6 +162,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PiGeon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PiGeon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ServiceRepo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PiGeon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PiGeon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ServiceRepo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SC_repository" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -258,7 +299,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="134" y="-662" width="1341" height="1035" extended-state="0" />
+    <frame x="67" y="-706" width="1341" height="1035" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21862972" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -487,7 +528,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/modules/tools/dockerctl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="899">
           <caret line="126" column="68" lean-forward="false" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
           <folding />
         </state>
@@ -495,8 +536,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/start_PoC1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="343">
+          <caret line="65" column="69" lean-forward="false" selection-start-line="65" selection-start-column="69" selection-end-line="65" selection-end-column="69" />
           <folding />
         </state>
       </provider>
